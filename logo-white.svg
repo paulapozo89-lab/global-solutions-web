@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 120">
+  <!-- Icon: rounded square with inner rounded diamond and center square -->
+  <g transform="translate(10,10)">
+    <!-- Outer rounded square with rounded-diamond cutout -->
+    <path d="M22,0 h56 a22,22 0 0 1 22,22 v56 a22,22 0 0 1 -22,22 h-56 a22,22 0 0 1 -22,-22 v-56 a22,22 0 0 1 22,-22 z
+             M50,10 Q14,50 50,90 Q86,50 50,10 Z" fill="white" fill-rule="evenodd"/>
+    <!-- Center square -->
+    <rect x="36" y="36" width="28" height="28" rx="4" ry="4" fill="white"/>
+  </g>
+  <!-- Text: GLOBAL -->
+  <text x="130" y="50" font-family="'Rajdhani','Segoe UI',sans-serif" font-size="50" font-weight="600" fill="rgba(255,255,255,0.6)" letter-spacing="8">GLOBAL</text>
+  <!-- Text: SOLUTIONS -->
+  <text x="130" y="95" font-family="'Rajdhani','Segoe UI',sans-serif" font-size="44" font-weight="700" fill="white" letter-spacing="3">SOLUTIONS</text>
+  <!-- Text: NOM -->
+  <text x="420" y="95" font-family="'Rajdhani','Segoe UI',sans-serif" font-size="44" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="3">NOM</text>
+</svg>
