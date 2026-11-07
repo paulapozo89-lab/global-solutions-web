@@ -3,7 +3,8 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/ga";
-import { COLORES_FORM, FORMATOS_FORM, MATERIALES_FORM, SECTORES_FORM, SITUACIONES_FORM } from "@/lib/leads";
+import { COLORES_FORM, FORMATOS_FORM, MATERIALES_FORM, MODO_ENVIO, SECTORES_FORM, SITUACIONES_FORM } from "@/lib/leads";
+import { CONTACTO } from "@/content/contacto";
 import { EnlaceWhatsApp, IconoWhatsApp } from "./Enlaces";
 import { cn } from "@/lib/utils";
 
@@ -52,8 +53,10 @@ function Resultado({ estado, mensajeWa }: { estado: Estado; mensajeWa: "diagnost
   if (estado.fase === "ok") {
     return (
       <div role="status" className="rounded-gs border border-gs-navy/15 bg-gs-gray-50 p-6 text-center">
-        <p className="font-display text-2xl font-bold uppercase text-gs-navy">Recibimos tu solicitud</p>
-        <p className="mt-2 text-gs-ink-soft">Te respondemos por correo o WhatsApp en horario de atención.</p>
+        <p className="font-display text-2xl font-bold uppercase text-gs-navy">{MODO_ENVIO === "whatsapp" ? "Se abrió WhatsApp con tu solicitud" : "Recibimos tu solicitud"}</p>
+        <p className="mt-2 text-gs-ink-soft">
+          {MODO_ENVIO === "whatsapp" ? `Si no se abrió, escríbenos al ${CONTACTO.telefonoVisible}. Te respondemos en horario de atención.` : "Te respondemos por correo o WhatsApp en horario de atención."}
+        </p>
       </div>
     );
   }
@@ -75,7 +78,26 @@ function Resultado({ estado, mensajeWa }: { estado: Estado; mensajeWa: "diagnost
   return null;
 }
 
+const ETIQUETAS: Record<string, string> = {
+  nombre: "Nombre", empresa: "Empresa", email: "Email", telefono: "Teléfono", sector: "Sector", situacion: "Situación", producto: "Producto",
+  material: "Material", color: "Color", formato: "Formato", cantidad: "Cantidad aproximada", comentarios: "Comentarios",
+};
+
+/** Arma el mensaje y abre WhatsApp. Los datos no pasan por ninguna URL del sitio ni por analítica. */
+function enviarPorWhatsApp(payload: Record<string, unknown>): Estado {
+  const titulo = payload.tipo === "cotizacion" ? "Solicitud de cotización de impresión" : "Solicitud de diagnóstico gratuito";
+  const lineas = Object.entries(ETIQUETAS)
+    .filter(([k]) => typeof payload[k] === "string" && (payload[k] as string).trim() !== "")
+    .map(([k, et]) => `${et}: ${(payload[k] as string).trim()}`);
+  const texto = `Hola, vengo del sitio web. ${titulo}.\n${lineas.join("\n")}`;
+  const url = `https://wa.me/${CONTACTO.whatsappNumero}?text=${encodeURIComponent(texto)}`;
+  const w = window.open(url, "_blank", "noopener,noreferrer");
+  if (!w) window.location.href = url;
+  return { fase: "ok" };
+}
+
 async function enviar(payload: Record<string, unknown>): Promise<Estado> {
+  if (MODO_ENVIO === "whatsapp") return enviarPorWhatsApp(payload);
   try {
     const r = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     const data = (await r.json().catch(() => ({}))) as { ok?: boolean; error?: string };
@@ -151,7 +173,7 @@ export function FormDiagnostico({ className }: { className?: string }) {
         disabled={estado.fase === "enviando"}
         className="w-full rounded-gs bg-gs-copper px-6 py-4 font-display text-[1.1875rem] font-bold uppercase leading-none tracking-wide text-white shadow-gs-copper hover:bg-gs-copper-hover disabled:opacity-60"
       >
-        {estado.fase === "enviando" ? "Enviando…" : "Solicitar diagnóstico gratuito"}
+        {estado.fase === "enviando" ? "Enviando…" : MODO_ENVIO === "whatsapp" ? "Enviar por WhatsApp" : "Solicitar diagnóstico gratuito"}
       </button>
       <Resultado estado={estado} mensajeWa="diagnostico" />
     </form>
@@ -226,7 +248,7 @@ export function FormCotizacion({ className }: { className?: string }) {
         disabled={estado.fase === "enviando"}
         className="w-full rounded-gs bg-gs-copper px-6 py-4 font-display text-[1.1875rem] font-bold uppercase leading-none tracking-wide text-white shadow-gs-copper hover:bg-gs-copper-hover disabled:opacity-60"
       >
-        {estado.fase === "enviando" ? "Enviando…" : "Cotizar la impresión"}
+        {estado.fase === "enviando" ? "Enviando…" : MODO_ENVIO === "whatsapp" ? "Cotizar por WhatsApp" : "Cotizar la impresión"}
       </button>
       <Resultado estado={estado} mensajeWa="impresion" />
     </form>

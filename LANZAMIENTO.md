@@ -1,6 +1,13 @@
-# Lanzamiento globalsolutionssl.mx — martes 1 de diciembre de 2026
+# Lanzamiento globalsolutionssl.mx
 
 Checklist para Paula. Nada de esto se ejecuta sin su confirmación.
+
+## Decisiones del 7 de noviembre de 2026 (Paula)
+
+- Se adelanta el lanzamiento (plan original: 1 de diciembre).
+- Se publican los 10 sectores y las cifras del catálogo aunque GS no las haya validado todavía. `validadoGS` sigue en `false` como registro; la franja de "pendiente" solo se ve en preview. GS debe validar NOM y cifras cuanto antes.
+- Aviso de privacidad: versión inicial redactada por GROW con datos públicos de GS. GS debe revisarla y confirmar su razón social.
+- Formularios en modo WhatsApp (`NEXT_PUBLIC_MODO_ENVIO` sin definir). Cuando haya Resend: cargar `RESEND_API_KEY`, `LEADS_TO`, `LEADS_FROM`, verificar el dominio en Resend y poner `NEXT_PUBLIC_MODO_ENVIO=correo` en Vercel producción.
 
 ## Antes del día
 

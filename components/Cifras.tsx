@@ -2,9 +2,12 @@ import { CIFRAS } from "@/content/cifras";
 import { esProduccion } from "@/lib/entorno";
 import { Contador } from "./Contador";
 
-/** Cifras grandes. Salen de content/cifras.ts; en producción solo las validadas por GS. */
+/**
+ * Cifras grandes. Salen de content/cifras.ts.
+ * Decisión de Paula (7 nov 2026): se publican aunque GS no haya validado; el aviso de pendiente solo sale en preview.
+ */
 export function Cifras({ ids }: { ids?: string[] }) {
-  const lista = CIFRAS.filter((c) => (!ids || ids.includes(c.id)) && (!esProduccion || c.validadoGS));
+  const lista = CIFRAS.filter((c) => !ids || ids.includes(c.id));
   if (lista.length === 0) return null;
   return (
     <div className="relative">

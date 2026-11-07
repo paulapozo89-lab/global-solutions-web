@@ -1,3 +1,10 @@
+/**
+ * Modo de envío de los formularios.
+ * "whatsapp": el botón arma el mensaje y abre WhatsApp (sin correo). Decisión de Paula, 7 nov 2026, hasta tener Resend.
+ * "correo": POST a /api/leads y envío con Resend. Activar con NEXT_PUBLIC_MODO_ENVIO=correo.
+ */
+export const MODO_ENVIO: "whatsapp" | "correo" = process.env.NEXT_PUBLIC_MODO_ENVIO === "correo" ? "correo" : "whatsapp";
+
 /** Esquema compartido cliente/servidor de los dos formularios. */
 export const SECTORES_FORM = [
   "Eficiencia Energética",

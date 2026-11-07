@@ -49,10 +49,14 @@ export const SECTORES_PENDIENTES = [
   },
 ] as const;
 
-/** Sectores visibles en este build: publicados y, en producción, validados por GS. */
-export const SECTORES_VISIBLES: Sector[] = SECTORES.filter(
-  (s) => s.publicado && (!esProduccion || s.validadoGS),
-);
+/**
+ * Sectores visibles en este build.
+ * Decisión de Paula (7 nov 2026): se publican todos los sectores aunque GS no haya validado;
+ * `validadoGS` sigue registrando el estado y la franja de pendiente solo aparece en preview.
+ * Para volver a la regla estricta: filtrar también por `(!esProduccion || s.validadoGS)`.
+ */
+export const SECTORES_VISIBLES: Sector[] = SECTORES.filter((s) => s.publicado);
+void esProduccion;
 
 export function getSector(slug: string): Sector | undefined {
   return SECTORES_VISIBLES.find((s) => s.slug === slug);
