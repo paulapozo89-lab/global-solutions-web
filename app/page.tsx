@@ -130,7 +130,7 @@ export default function Inicio() {
             </Link>
           </div>
           {SECTORES_VISIBLES.length > 0 ? (
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
               {SECTORES_VISIBLES.map((s) => (
                 <SectorCard key={s.slug} sector={s} />
               ))}
