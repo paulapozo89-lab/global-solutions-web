@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Sello } from "@/components/Sello";
-import { Boton } from "@/components/Boton";
-import { Cifras } from "@/components/Cifras";
+import { Hero } from "@/components/Hero";
 import { Proceso } from "@/components/Proceso";
 import { SectorCard } from "@/components/SectorCard";
 import { CtaCobre } from "@/components/CtaCobre";
@@ -23,37 +22,7 @@ export const metadata: Metadata = {
 export default function Inicio() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gs-bg">
-        <Image
-          src="/img/portada-edificio.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-top opacity-40"
-        />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-gs-bg/30 via-gs-bg/85 to-gs-bg" />
-        <Sello opacidad={0.05} />
-        <div className="gs-container relative pb-20 pt-24 md:pb-28 md:pt-36">
-          <p className="gs-eyebrow text-gs-copper-lt">Certificación · Etiquetado · Impresión · NOM</p>
-          <h1 className="mt-4 max-w-4xl text-[2.75rem] leading-[0.98] md:text-7xl">
-            Tu producto, <span className="bg-gs-copper px-2 text-white">listo</span> para el mercado mexicano.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gs-mist md:text-xl">
-            Certificación NOM, diseño de etiquetado e impresión de etiquetas en un solo proceso. Un solo socio, cero coordinación con múltiples proveedores.
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Boton href="/contacto">Solicita tu diagnóstico gratuito</Boton>
-            <Boton href="/sectores" variante="borde">
-              Ver sectores
-            </Boton>
-          </div>
-          <div className="mt-16 border-t border-white/10 pt-10">
-            <Cifras ids={["noms", "sectores", "diagnostico", "impresion"]} />
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* Tres líneas de servicio */}
       <section className="gs-light gs-section">
@@ -134,7 +103,7 @@ export default function Inicio() {
                 }
               >
                 <span className={`font-display text-6xl font-bold leading-none ${i === 2 ? "text-gs-bg" : "text-gs-mist"}`}>{c.numero}</span>
-                <h3 className="mt-2 text-2xl">{c.titulo}</h3>
+                <h3 className="mt-2 text-2xl text-white">{c.titulo}</h3>
                 <p className={i === 2 ? "mt-2 font-medium text-gs-bg" : "mt-2 text-gs-mist"}>{c.texto}</p>
                 <ul className={`mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm font-semibold ${i === 2 ? "text-gs-bg" : ""}`}>
                   {c.puntos.map((p) => (
@@ -161,8 +130,8 @@ export default function Inicio() {
             </Link>
           </div>
           {SECTORES_VISIBLES.length > 0 ? (
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {SECTORES_VISIBLES.slice(0, 6).map((s) => (
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {SECTORES_VISIBLES.map((s) => (
                 <SectorCard key={s.slug} sector={s} />
               ))}
             </div>

@@ -61,5 +61,26 @@
   .gs-section { @apply py-16 md:py-24; }
   /* Texto técnico sobre blanco */
   .gs-light { @apply bg-white text-gs-ink; }
-  .gs-light h2, .gs-light h3, .gs-light h4 { @apply text-gs-navy; }
+  :where(.gs-light) :where(h2, h3, h4) { color: #1f2036; }
+}
+
+/* Movimiento del hero */
+@keyframes gs-fade-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes gs-kenburns { from { transform: scale(1); } to { transform: scale(1.1); } }
+@keyframes gs-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-112px, -112px, 0); } }
+@keyframes gs-wipe { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes gs-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes gs-pulse-ring { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.9); opacity: 0; } }
+
+.gs-anim { opacity: 0; animation: gs-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: var(--d, 0ms); }
+.gs-kenburns { animation: gs-kenburns 24s ease-out forwards; }
+.gs-drift { animation: gs-drift 40s linear infinite; }
+.gs-wipe { transform-origin: left; animation: gs-wipe 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+.gs-marquee { animation: gs-marquee 45s linear infinite; }
+.gs-marquee:hover { animation-play-state: paused; }
+.gs-pulse-ring::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid #c4733f; animation: gs-pulse-ring 2.2s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .gs-anim { opacity: 1; animation: none; }
+  .gs-kenburns, .gs-drift, .gs-marquee, .gs-pulse-ring::after { animation: none; }
+  .gs-wipe { animation: none; transform: none; }
 }

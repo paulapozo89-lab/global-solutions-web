@@ -35,9 +35,10 @@ export const juguetes: Sector = {
   },
   errorComun: "No incluir la edad recomendada ni la advertencia de piezas pequeñas.",
   servicios: ["certificacion", "etiquetado", "impresion"],
-  // La foto del catálogo muestra un logo de terceros (LEGO). No se usa.
-  foto: null,
-  fotoAlt: "",
+  // La foto del catálogo muestra un logo de terceros (LEGO) y no se usa.
+  // Esta es una imagen genérica generada con Higgsfield (7 nov 2026): bloques de madera y peluche sin marcas, etiqueta en blanco.
+  foto: "/img/sectores/juguetes.webp",
+  fotoAlt: "Caja de bloques de madera con etiqueta en blanco junto a un oso de peluche en una repisa infantil",
   validadoGS: false,
   publicado: true,
 };

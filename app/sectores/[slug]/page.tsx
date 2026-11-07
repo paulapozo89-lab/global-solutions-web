@@ -77,6 +77,18 @@ export default async function PaginaSector({ params }: Props) {
             </div>
           </div>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white md:text-xl">{s.descripcion}</p>
+          {s.nomsRelacionadas.length > 0 && (
+            <div className="mt-6">
+              <p className="gs-eyebrow text-gs-copper-lt">NOM relacionadas</p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {s.nomsRelacionadas.map((n) => (
+                  <li key={n} className="rounded-full border border-white/25 px-3 py-1 font-display text-sm font-semibold tracking-wide text-white">
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
 

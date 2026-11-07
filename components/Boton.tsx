@@ -11,7 +11,7 @@ type Props = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-gs px-6 py-3.5 font-display text-[1.1875rem] font-bold uppercase leading-none tracking-wide transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-offset-4";
+  "inline-flex items-center justify-center gap-2 rounded-gs px-6 py-3.5 font-display text-[1.1875rem] font-bold uppercase leading-tight tracking-wide transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-offset-4";
 
 const variantes = {
   cobre: "bg-gs-copper text-white shadow-gs-copper hover:bg-gs-copper-hover",

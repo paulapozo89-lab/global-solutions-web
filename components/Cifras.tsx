@@ -1,5 +1,6 @@
 import { CIFRAS } from "@/content/cifras";
 import { esProduccion } from "@/lib/entorno";
+import { Contador } from "./Contador";
 
 /** Cifras grandes. Salen de content/cifras.ts; en producción solo las validadas por GS. */
 export function Cifras({ ids }: { ids?: string[] }) {
@@ -15,7 +16,9 @@ export function Cifras({ ids }: { ids?: string[] }) {
       <dl className="grid grid-cols-2 gap-6 md:grid-cols-4">
         {lista.map((c) => (
           <div key={c.id} className="text-center">
-            <dd className="font-display text-5xl font-bold leading-none text-gs-copper-lt md:text-6xl">{c.valor}</dd>
+            <dd className="font-display text-5xl font-bold leading-none text-gs-copper-lt md:text-6xl">
+              <Contador valor={c.valor} />
+            </dd>
             <dt className="mt-2 font-display text-sm font-semibold uppercase tracking-[0.14em] text-gs-mist">{c.etiqueta}</dt>
           </div>
         ))}

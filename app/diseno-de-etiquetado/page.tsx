@@ -47,7 +47,7 @@ export default function DisenoEtiquetado() {
             >
               <span className={`font-display text-7xl font-bold leading-none md:text-8xl ${i === 2 ? "text-gs-bg" : "text-gs-mist"}`}>{c.numero}</span>
               <div>
-                <h2 className="text-3xl md:text-4xl">{c.titulo}</h2>
+                <h2 className="text-3xl text-white md:text-4xl">{c.titulo}</h2>
                 <p className={`mt-2 text-lg ${i === 2 ? "font-medium text-gs-bg" : "text-gs-mist"}`}>{c.texto}</p>
                 <ul className={`mt-5 grid gap-2 sm:grid-cols-2 ${i === 2 ? "text-gs-bg" : ""}`}>
                   {c.puntos.map((p) => (
