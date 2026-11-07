@@ -1,5 +1,5 @@
 import { CIFRAS } from "@/content/cifras";
-import { esProduccion } from "@/lib/entorno";
+import { mostrarPendientes } from "@/lib/entorno";
 import { Contador } from "./Contador";
 
 /**
@@ -11,7 +11,7 @@ export function Cifras({ ids }: { ids?: string[] }) {
   if (lista.length === 0) return null;
   return (
     <div className="relative">
-      {!esProduccion && lista.some((c) => !c.validadoGS) && (
+      {mostrarPendientes && lista.some((c) => !c.validadoGS) && (
         <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wide text-gs-copper-lt">
           Cifras pendientes de validación por GS (solo visible en preview)
         </p>

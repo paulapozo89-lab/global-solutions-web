@@ -4,7 +4,7 @@ import { CONTACTO } from "@/content/contacto";
 import { SERVICIOS } from "@/content/servicios";
 import { SECTORES_VISIBLES } from "@/content/sectores";
 import { EnlaceEmail, EnlaceTelefono, EnlaceWhatsApp } from "./Enlaces";
-import { esProduccion } from "@/lib/entorno";
+import { mostrarPendientes } from "@/lib/entorno";
 
 export function Footer() {
   return (
@@ -78,7 +78,7 @@ export function Footer() {
                 </a>
               </li>
             ) : (
-              !esProduccion && <li className="text-xs text-gs-copper-lt">PENDIENTE_GS: URL de LinkedIn empresa</li>
+              mostrarPendientes && <li className="text-xs text-gs-copper-lt">PENDIENTE_GS: URL de LinkedIn empresa</li>
             )}
           </ul>
         </div>

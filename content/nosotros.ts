@@ -8,6 +8,12 @@ export const NOSOTROS = {
     "Con ese conocimiento, creó Global Solutions S&L: una firma diseñada para operar de forma distinta. Comunicación directa, seguimiento puntual en cada fase, y la capacidad de integrar certificación, etiquetado e impresión bajo un mismo equipo.",
     "Hoy la empresa cuenta con infraestructura propia de impresión y un solo punto de contacto para todo el proceso normativo.",
   ],
-  // PENDIENTE_GS: fotos reales de impresora, rollos, taller y equipo. No se generan con IA.
+  /** Foto del equipo de impresión entregada por Paula (7 nov 2026). No se usa la foto de la fundadora por ahora. */
+  fotoPrincipal: {
+    src: "/img/impresora-zebra-zt411.webp",
+    alt: "Impresora industrial de etiquetas Zebra ZT411 imprimiendo un rollo de etiquetas",
+    pie: "Impresión térmica industrial",
+  },
+  // PENDIENTE_GS (solo código): fotos de rollos, taller y equipo. No se generan con IA.
   fotos: [] as { src: string; alt: string }[],
 } as const;

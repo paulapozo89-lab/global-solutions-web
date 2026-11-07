@@ -5,7 +5,7 @@ import { Migas } from "@/components/Migas";
 import { SectorCard } from "@/components/SectorCard";
 import { CtaCobre } from "@/components/CtaCobre";
 import { SECTORES_PENDIENTES, SECTORES_VISIBLES } from "@/content/sectores";
-import { esProduccion } from "@/lib/entorno";
+import { mostrarPendientes } from "@/lib/entorno";
 
 export const metadata: Metadata = {
   title: "Sectores: catálogo de etiquetado NOM por industria",
@@ -46,7 +46,7 @@ export default function Sectores() {
             </p>
           )}
 
-          {!esProduccion && (
+          {mostrarPendientes && (
             <div className="mt-12 rounded-gs-lg border border-gs-copper/40 bg-gs-navy p-6">
               <p className="gs-eyebrow text-gs-copper-lt">PENDIENTE_GS · Sectores por confirmar (solo en preview)</p>
               <p className="mt-2 text-sm text-gs-mist">

@@ -3,10 +3,8 @@ import Image from "next/image";
 import { Encabezado } from "@/components/Encabezado";
 import { Migas } from "@/components/Migas";
 import { CtaCobre } from "@/components/CtaCobre";
-import { Sello } from "@/components/Sello";
 import { NOSOTROS } from "@/content/nosotros";
 import { PORQUE } from "@/content/servicios";
-import { esProduccion } from "@/lib/entorno";
 
 export const metadata: Metadata = {
   title: "Nosotros: experiencia desde ambos lados del proceso normativo",
@@ -27,15 +25,19 @@ export default function Nosotros() {
 
       <section className="gs-light gs-section">
         <div className="gs-container grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
-          <div className="relative overflow-hidden rounded-gs-xl bg-gs-navy p-10">
-            <Sello opacidad={0.1} />
-            <Image src="/logo-white.png" alt="Global Solutions S&L" width={360} height={115} className="relative mx-auto h-auto w-full max-w-[300px]" />
-            {!esProduccion && NOSOTROS.fotos.length === 0 && (
-              <p className="relative mt-8 text-center text-xs font-semibold uppercase tracking-wide text-gs-copper-lt">
-                PENDIENTE_GS: fotos reales de impresora, rollos, taller y equipo
-              </p>
-            )}
-          </div>
+          <figure className="overflow-hidden rounded-gs-xl border border-gs-gray-100 bg-white shadow-gs-card">
+            <Image
+              src={NOSOTROS.fotoPrincipal.src}
+              alt={NOSOTROS.fotoPrincipal.alt}
+              width={1500}
+              height={1400}
+              sizes="(min-width:1024px) 480px, 100vw"
+              className="h-auto w-full"
+            />
+            <figcaption className="border-t border-gs-gray-100 px-5 py-3 font-display text-sm font-semibold uppercase tracking-[0.12em] text-gs-ink-soft">
+              {NOSOTROS.fotoPrincipal.pie}
+            </figcaption>
+          </figure>
           <div className="space-y-5 text-lg leading-relaxed text-gs-ink">
             <p>
               <strong className="font-display text-xl font-bold uppercase text-gs-navy">{NOSOTROS.fundadora}</strong>, {NOSOTROS.parrafos[0]}

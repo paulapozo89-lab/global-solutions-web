@@ -4,7 +4,7 @@ import { Migas } from "@/components/Migas";
 import { FormDiagnostico } from "@/components/Formularios";
 import { EnlaceEmail, EnlaceTelefono, EnlaceWhatsApp, IconoWhatsApp } from "@/components/Enlaces";
 import { CONTACTO } from "@/content/contacto";
-import { esProduccion } from "@/lib/entorno";
+import { mostrarPendientes } from "@/lib/entorno";
 
 export const metadata: Metadata = {
   title: "Contacto: diagnóstico normativo gratuito en 48 h",
@@ -80,7 +80,7 @@ export default function Contacto() {
                 </a>
               </div>
             ) : (
-              !esProduccion && <p className="text-xs font-semibold uppercase text-gs-copper-tx">PENDIENTE_GS: URL de LinkedIn de empresa</p>
+              mostrarPendientes && <p className="text-xs font-semibold uppercase text-gs-copper-tx">PENDIENTE_GS: URL de LinkedIn de empresa</p>
             )}
           </aside>
         </div>
