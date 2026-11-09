@@ -5,5 +5,5 @@ export const size = OG_SIZE;
 export const contentType = "image/png";
 
 export default function Image() {
-  return imagenOg("Certificación NOM, etiquetado e impresión", "Un solo proceso. Un solo socio.");
+  return imagenOg("__inicio__", "Certificación NOM · Etiquetado · Impresión");
 }

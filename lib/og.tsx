@@ -1,13 +1,13 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-/** og:image sobre navy, con logo y título. */
+/**
+ * og:image: isotipo grande centrado sobre navy, nombre y título de la página.
+ * El isotipo va en vector (medidas del archivo oficial) para que salga nítido.
+ */
 export async function imagenOg(titulo: string, subtitulo?: string) {
-  const logo = await readFile(path.join(process.cwd(), "public", "logo-white.png"));
-  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+  const esInicio = titulo === "__inicio__";
   return new ImageResponse(
     (
       <div
@@ -16,26 +16,38 @@ export async function imagenOg(titulo: string, subtitulo?: string) {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "64px 72px",
+          alignItems: "center",
+          justifyContent: "center",
           background: "linear-gradient(160deg, #1F2036 0%, #161729 100%)",
           color: "#fff",
           fontFamily: "sans-serif",
+          position: "relative",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoSrc} alt="" width={360} height={115} style={{ width: 360, height: 115, objectFit: "contain" }} />
-          <div style={{ display: "flex", background: "#C4733F", color: "#fff", padding: "10px 20px", fontSize: 24, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>
-            NOM
+        {/* Franja cobre inferior */}
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 14, background: "#C4733F", display: "flex" }} />
+
+        <svg width={esInicio ? 260 : 210} height={esInicio ? 260 : 210} viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill="#ffffff"
+            fillRule="evenodd"
+            d="M40 0 H210 A40 40 0 0 1 250 40 V210 A40 40 0 0 1 210 250 H40 A40 40 0 0 1 0 210 V40 A40 40 0 0 1 40 0 Z M75 51 L175 51 L212 88 L212 162 L175 199 L75 199 L38 162 L38 88 Z"
+          />
+          <rect x="75" y="88" width="100" height="74" fill="#ffffff" />
+        </svg>
+
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 34 }}>
+          <div style={{ display: "flex", fontSize: 44, fontWeight: 800, letterSpacing: 6, textTransform: "uppercase" }}>
+            Global Solutions S&L
           </div>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div style={{ display: "flex", fontSize: titulo.length > 48 ? 56 : 68, fontWeight: 800, lineHeight: 1.02, textTransform: "uppercase", letterSpacing: 1 }}>
-            {titulo}
+          {!esInicio && (
+            <div style={{ display: "flex", marginTop: 14, fontSize: 30, color: "#9AADDA", textAlign: "center", maxWidth: 1000 }}>
+              {titulo}
+            </div>
+          )}
+          <div style={{ display: "flex", marginTop: esInicio ? 16 : 12, fontSize: 24, color: "#D1936B", letterSpacing: 3 }}>
+            {subtitulo ?? "Certificación NOM · Etiquetado · Impresión"}
           </div>
-          {subtitulo && <div style={{ display: "flex", fontSize: 28, color: "#9AADDA" }}>{subtitulo}</div>}
-          <div style={{ display: "flex", fontSize: 24, color: "#D1936B", letterSpacing: 2 }}>globalsolutionssl.mx</div>
         </div>
       </div>
     ),

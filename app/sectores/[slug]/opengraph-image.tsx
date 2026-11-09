@@ -12,5 +12,5 @@ export function generateStaticParams() {
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const s = getSector(slug);
-  return imagenOg(s ? `${s.numero} · ${s.nombre}` : "Catálogo por sector", s?.nomPrincipal);
+  return imagenOg(s ? `${s.numero} · ${s.nombre}` : "Catálogo por sector", s ? `Etiquetado NOM · ${s.nomPrincipal}` : undefined);
 }
