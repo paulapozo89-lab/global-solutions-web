@@ -35,7 +35,7 @@ export default function AvisoPrivacidad() {
 
           <div>
             <h2 className="text-2xl">Datos personales que recabamos</h2>
-            <p className="mt-3">A través de los formularios de este sitio, por WhatsApp, correo electrónico o teléfono, podemos recabar: nombre, empresa, correo electrónico, número telefónico y la información que nos compartas sobre tu producto, sector y situación normativa. No recabamos datos personales sensibles.</p>
+            <p className="mt-3">Cuando nos escribes por WhatsApp, correo electrónico o teléfono desde este sitio, podemos recabar: nombre, empresa, correo electrónico, número telefónico y la información que nos compartas sobre tu producto, sector y situación normativa. No recabamos datos personales sensibles.</p>
           </div>
 
           <div>

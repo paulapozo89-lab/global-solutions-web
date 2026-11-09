@@ -7,7 +7,7 @@ Checklist para Paula. Nada de esto se ejecuta sin su confirmación.
 - Se adelanta el lanzamiento (plan original: 1 de diciembre).
 - Se publican los 10 sectores y las cifras del catálogo aunque GS no las haya validado todavía. `validadoGS` sigue en `false` como registro; la franja de "pendiente" solo se ve en preview. GS debe validar NOM y cifras cuanto antes.
 - Aviso de privacidad: versión inicial redactada por GROW con datos públicos de GS. GS debe revisarla y confirmar su razón social.
-- Formularios en modo WhatsApp (`NEXT_PUBLIC_MODO_ENVIO` sin definir). Cuando haya Resend: cargar `RESEND_API_KEY`, `LEADS_TO`, `LEADS_FROM`, verificar el dominio en Resend y poner `NEXT_PUBLIC_MODO_ENVIO=correo` en Vercel producción.
+- 9 nov 2026: los formularios se retiraron del sitio (no había envío de correo configurado). En su lugar, bloques de contacto directo: WhatsApp, llamada y correo con mensaje prellenado. Si GS quiere formulario con correo, hay que contratar/configurar Resend y reconstruir `components/Formularios.tsx` + `app/api/leads` (la validación sigue en `lib/leads.ts`).
 
 ## Antes del día
 

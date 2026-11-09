@@ -42,6 +42,16 @@ export function EnlaceEmail({ className, children }: { className?: string; child
   );
 }
 
+/** mailto con asunto y cuerpo prellenados. Evento GA4 click_email. */
+export function EnlaceCorreo({ asunto, cuerpo, className, children }: { asunto: string; cuerpo: string; className?: string; children: React.ReactNode }) {
+  const href = `mailto:${CONTACTO.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  return (
+    <a href={href} className={className} onClick={() => trackEvent("click_email")}>
+      {children}
+    </a>
+  );
+}
+
 /** Botón flotante de WhatsApp. Sin verde: navy con borde cobre. */
 export function WhatsAppFlotante() {
   return (

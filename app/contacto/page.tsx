@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Encabezado } from "@/components/Encabezado";
 import { Migas } from "@/components/Migas";
-import { FormDiagnostico } from "@/components/Formularios";
-import { EnlaceEmail, EnlaceTelefono, EnlaceWhatsApp, IconoWhatsApp } from "@/components/Enlaces";
+import { ContactoDirecto } from "@/components/ContactoDirecto";
 import { CONTACTO } from "@/content/contacto";
 import { mostrarPendientes } from "@/lib/entorno";
 
@@ -28,33 +27,19 @@ export default function Contacto() {
       </Encabezado>
 
       <section className="gs-light gs-section">
-        <div className="gs-container grid gap-10 lg:grid-cols-[1.25fr_1fr]">
-          <div id="diagnostico" className="rounded-gs-xl border border-gs-gray-100 bg-white p-6 shadow-gs-card md:p-8">
-            <h2 className="text-2xl md:text-3xl">Solicita tu diagnóstico gratuito</h2>
-            <div className="mt-6">
-              <FormDiagnostico />
-            </div>
+        <div className="gs-container grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+          <div id="diagnostico">
+            <ContactoDirecto
+              titulo="Solicita tu diagnóstico gratuito"
+              texto="Cuéntanos qué producto es, de dónde viene y en qué situación está. Te decimos qué NOM aplica y qué necesitas."
+              mensajeWa="diagnostico"
+              asunto="Diagnóstico normativo gratuito"
+              cuerpo={"Hola, quiero un diagnóstico normativo gratuito.\n\nNombre:\nEmpresa:\nTeléfono:\nSector:\nSituación (retenido en aduana, producto nuevo, renovación, etiquetado, impresión, no sé qué NOM aplica):\nSobre mi producto:\n"}
+              ubicacion="contacto-directo"
+            />
           </div>
 
           <aside className="space-y-7">
-            <div>
-              <p className="gs-eyebrow text-gs-copper-tx">WhatsApp</p>
-              <EnlaceWhatsApp
-                ubicacion="contacto"
-                mensaje="diagnostico"
-                className="mt-2 inline-flex items-center gap-2 rounded-full bg-gs-navy px-5 py-3 font-display text-xl font-bold text-white"
-              >
-                <IconoWhatsApp /> {CONTACTO.telefonoVisible}
-              </EnlaceWhatsApp>
-            </div>
-            <div>
-              <p className="gs-eyebrow text-gs-copper-tx">Teléfono</p>
-              <EnlaceTelefono className="mt-1 block text-lg text-gs-ink hover:underline" />
-            </div>
-            <div>
-              <p className="gs-eyebrow text-gs-copper-tx">Email</p>
-              <EnlaceEmail className="mt-1 block text-lg text-gs-ink hover:underline" />
-            </div>
             <div>
               <p className="gs-eyebrow text-gs-copper-tx">Horario</p>
               <p className="mt-1 text-lg text-gs-ink">{CONTACTO.horario}</p>

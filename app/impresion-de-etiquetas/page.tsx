@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Encabezado } from "@/components/Encabezado";
 import { Migas } from "@/components/Migas";
 import { Proceso } from "@/components/Proceso";
-import { FormCotizacion } from "@/components/Formularios";
+import { ContactoDirecto } from "@/components/ContactoDirecto";
 import { FaqLista } from "@/components/Faq";
 import { Boton } from "@/components/Boton";
 import { EnlaceWhatsApp, IconoWhatsApp } from "@/components/Enlaces";
@@ -115,9 +115,14 @@ export default function ImpresionEtiquetas() {
               <IconoWhatsApp /> {CONTACTO.telefonoVisible}
             </EnlaceWhatsApp>
           </div>
-          <div className="rounded-gs-xl border border-gs-gray-100 bg-white p-6 shadow-gs-card md:p-8">
-            <FormCotizacion />
-          </div>
+          <ContactoDirecto
+            titulo="Cotiza la impresión"
+            texto="Dinos material, color, formato y cantidad aproximada, o mándanos tu arte o una foto del producto."
+            mensajeWa="impresion"
+            asunto="Cotización de impresión de etiquetas"
+            cuerpo={"Hola, quiero cotizar la impresión de etiquetas.\n\nNombre:\nEmpresa:\nTeléfono:\nMaterial (papel térmico, polipropileno, poliéster):\nColor (blanco, gris, transparente):\nFormato:\nCantidad aproximada:\nComentarios:\n"}
+            ubicacion="impresion-directo"
+          />
         </div>
       </section>
 
